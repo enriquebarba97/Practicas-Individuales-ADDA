@@ -6,8 +6,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/DatosCompartidos"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/LpSolve"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/DatosCompartidos"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ParteComun"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
