@@ -1,15 +1,14 @@
-package ejercicios;
+package ejercicio1;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import clases.Barrio;
 import us.lsi.common.Streams2;
 import us.lsi.lpsolve.solution.AlgoritmoPLI;
 import us.lsi.lpsolve.solution.SolutionPLI;
 
-public class Ejercicio1 {
+public class Ejercicio1PL {
 
 	public static void main(String[] args) {
 		String constraints = getConstraints2();
