@@ -41,15 +41,7 @@ public class Ejercicio4 {
 		List<Monumento> ordenTopo = new ArrayList<>();
 		grafoTopo.forEachRemaining(v->ordenTopo.add(v));
 		System.out.println(ordenTopo);
-		
-		
-		
-		
-		
-		
-		
-		
-		
+			
 		
 //		DOTExporter<Monumento,Camino> de1 = new DOTExporter<Monumento,Camino>(
 //				new IntegerComponentNameProvider<>(),
