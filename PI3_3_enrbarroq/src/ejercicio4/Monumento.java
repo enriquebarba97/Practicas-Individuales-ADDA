@@ -6,6 +6,10 @@ public class Monumento {
 		return new Monumento("");
 	}
 	
+	public static Monumento create(String nombre) {
+		return new Monumento(nombre);
+	}
+	
 	public static Monumento create(String[] formato) {
 		return new Monumento(formato);
 	}
