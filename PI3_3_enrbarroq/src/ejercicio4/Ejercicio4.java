@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
 
 import org.jgrapht.Graph;
 import org.jgrapht.alg.connectivity.ConnectivityInspector;
-import org.jgrapht.alg.shortestpath.FloydWarshallShortestPaths;
+import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
 import org.jgrapht.graph.SimpleDirectedGraph;
 import org.jgrapht.graph.SimpleWeightedGraph;
 import org.jgrapht.io.DOTExporter;
@@ -131,14 +131,25 @@ public class Ejercicio4 {
 		return result;
 	}
 	
+	// Camino minimo con Dijkstra
 	private static void caminoMinimo(Graph<Monumento, Camino> grafoConexiones, List<Monumento> recorrido) {
-		FloydWarshallShortestPaths<Monumento, Camino> grafo = new FloydWarshallShortestPaths<>(grafoConexiones);
+		DijkstraShortestPath<Monumento, Camino> grafo = new DijkstraShortestPath<>(grafoConexiones);
+		
+		// Lista de caminos mínimos de un vértice del recorrido al siguiente
 		var caminos = IntStream.range(0, recorrido.size()-1)
 				.mapToObj(i->grafo.getPath(recorrido.get(i), recorrido.get(i+1))).collect(Collectors.toList());
+		
+		// Tiempo del camino total
 		double tiempo =	caminos.stream()
 			.mapToDouble(c->c.getWeight()).sum();
+		
+		// Presentación del camino en una lista de vétices
+		
+		// Obtenemos las listas de vértices de los caminos intermedios
 		List<List<Monumento>> intermedio = caminos.stream()
 				.map(c->c.getVertexList()).collect(Collectors.toList());
+		
+		// Los juntamos en una lista quitando los vértices redundantes
 		List<Monumento> recorridoFinal = new ArrayList<>();
 		recorridoFinal.addAll(intermedio.get(0));
 		for(int i = 1; i<intermedio.size(); i++) {
@@ -147,6 +158,6 @@ public class Ejercicio4 {
 		}
 		System.out.println("Recorrido mínimo: " + recorridoFinal);
 		System.out.println("Tiempo: " + tiempo);
-	}
+	}	
 	
 }

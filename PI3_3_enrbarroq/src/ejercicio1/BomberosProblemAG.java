@@ -11,25 +11,16 @@ import us.lsi.common.Streams2;
 
 public class BomberosProblemAG implements ValuesInRangeProblemAG<Integer, List<Integer>> {
 	
-	private List<List<Integer>> barrios;
+	private List<Barrio> barrios;
 	
 	public BomberosProblemAG(String fichero) {
 		this.barrios = cargaBarrios(fichero);
 	}
 	
-	private List<List<Integer>> cargaBarrios(String fichero) {
+	private List<Barrio> cargaBarrios(String fichero) {
 		return Streams2.fromFile("ficheros/ejercicio1.txt")
-				.map(s -> create(s))
+				.map(Barrio::create)
 				.collect(Collectors.toList());
-	}
-	
-	private static List<Integer> create(String s){
-		List<Integer> result = new ArrayList<>();
-		String[] vals = s.split("[,]");
-		for(int i = 0; i<vals.length; i++) {
-			result.add(Integer.parseInt(vals[i].trim()));
-		}
-		return result;
 	}
 	
 	@Override
@@ -57,8 +48,8 @@ public class BomberosProblemAG implements ValuesInRangeProblemAG<Integer, List<I
 		return (double) -fo -getVariableNumber()*restriccion*restriccion;
 	}
 
-	private long check(List<Integer> b, List<Integer> s) {
-		return b.stream().filter(i -> s.contains(i)).count()-1;
+	private long check(Barrio b, List<Integer> s) {
+		return b.getVecinos().stream().filter(i -> s.contains(i)).count()-1;
 	}
 
 	@Override
