@@ -90,7 +90,7 @@ public class Camino {
 
 	@Override
 	public String toString() {
-		return "Camino [id=" + id + ", source=" + source + ", target=" + target + ", tiempo=" + tiempo + "]";
+		return source + "->" + target;
 	}
 
 	@Override
