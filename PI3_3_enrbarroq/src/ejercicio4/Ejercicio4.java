@@ -30,17 +30,14 @@ public class Ejercicio4 {
 		Monumento m4 = Monumento.create("Sitio4");
 		Monumento m5 = Monumento.create("Sitio5");
 		Monumento m6 = Monumento.create("Sitio6");
-		Monumento m7 = Monumento.create("Sitio7");
-		Monumento m8 = Monumento.create("Sitio8");
-		Monumento m9 = Monumento.create("Sitio9");
 		
-		Graph<Monumento, Camino> grafoConexiones = GraphsReader.newGraph("ficheros/grafo1.txt", 
+		Graph<Monumento, Camino> grafoConexiones = GraphsReader.newGraph("ficheros/grafoConexiones.txt", 
 				Monumento::create, 
 				Camino::create, 
 				() -> new SimpleWeightedGraph<>(Monumento::create,Camino::create), 
 				Camino::getTiempo);
 		
-		Graph<Monumento, Camino> grafoPrecedencias = GraphsReader.newGraph("ficheros/grafo2.txt", 
+		Graph<Monumento, Camino> grafoPrecedencias = GraphsReader.newGraph("ficheros/grafoPrecedencias.txt", 
 				Monumento::create, 
 				Camino::create, 
 				() -> new SimpleDirectedGraph<>(Camino.class));
@@ -52,16 +49,12 @@ public class Ejercicio4 {
 		System.out.println("Los monumentos que puedes visitar sin visitar otro antes son: "+visitasSinPrecedencias(grafoPrecedencias));
 		
 
-		List<Monumento> recorrido = Arrays.asList(m0,m1,m2);
-		List<Monumento> recorrido2 = Arrays.asList(m4,m5,m6);
-		List<Monumento> recorrido3 = Arrays.asList(m0,m1,m3,m5,m7);
-		List<Monumento> recorrido4 = Arrays.asList(m4,m8,m9);
+		List<Monumento> recorrido1 = Arrays.asList(m0,m1,m4);
+		List<Monumento> recorrido2 = Arrays.asList(m0,m1,m3,m5);
 		
 		System.out.println("=========================================== APARTADO C ===========================================");
-		apartadoC(grafoConexiones, grafoPrecedencias, recorrido);
+		apartadoC(grafoConexiones, grafoPrecedencias, recorrido1);
 		apartadoC(grafoConexiones, grafoPrecedencias, recorrido2);
-		apartadoC(grafoConexiones, grafoPrecedencias, recorrido3);
-		apartadoC(grafoConexiones, grafoPrecedencias, recorrido4);
 		
 		DOTExporter<Monumento,Camino> de1 = new DOTExporter<Monumento,Camino>(
 				new IntegerComponentNameProvider<>(),
@@ -73,10 +66,10 @@ public class Ejercicio4 {
 				x->x.getNombre(),
 				null);
 		
-		PrintWriter f = Files2.getWriter("ficheros/grafo1.gv");
+		PrintWriter f = Files2.getWriter("ficheros/grafoConexiones.gv");
 		de1.exportGraph(grafoConexiones, f);
 		
-		PrintWriter f2 = Files2.getWriter("ficheros/grafo2.gv");
+		PrintWriter f2 = Files2.getWriter("ficheros/grafoPrecedencias.gv");
 		de2.exportGraph(grafoPrecedencias, f2);
 	}
 	
