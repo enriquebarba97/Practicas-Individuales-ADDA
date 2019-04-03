@@ -1,0 +1,15 @@
+#VERTEX#
+Sitio0
+Sitio1
+Sitio2
+Sitio3
+Sitio4
+Sitio5
+Sitio6
+#EDGE#
+Sitio0,Sitio1,0
+Sitio0,Sitio2,0
+Sitio2,Sitio3,0
+Sitio5,Sitio3,0
+Sitio4,Sitio5,0
+Sitio4,Sitio6,0
