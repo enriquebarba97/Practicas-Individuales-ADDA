@@ -25,11 +25,9 @@ public class Ejercicio4 {
 		
 		Monumento m0 = Monumento.create("Sitio0");
 		Monumento m1 = Monumento.create("Sitio1");
-		Monumento m2 = Monumento.create("Sitio2");
 		Monumento m3 = Monumento.create("Sitio3");
 		Monumento m4 = Monumento.create("Sitio4");
 		Monumento m5 = Monumento.create("Sitio5");
-		Monumento m6 = Monumento.create("Sitio6");
 		
 		Graph<Monumento, Camino> grafoConexiones = GraphsReader.newGraph("ficheros/grafoConexiones.txt", 
 				Monumento::create, 

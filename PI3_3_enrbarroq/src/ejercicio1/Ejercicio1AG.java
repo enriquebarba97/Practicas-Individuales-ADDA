@@ -17,8 +17,8 @@ public class Ejercicio1AG {
 		AlgoritmoAG<ValuesInRangeChromosome<Integer>> al= new AlgoritmoAG<>(ChromosomeType.Binary, problema);
 		al.ejecuta();
 		
-		System.out.println(al.getBestChromosome().decode());
-		System.out.println(problema.getSolucion(al.getBestChromosome()));
+		System.out.println("Mejor cromosoma: " + al.getBestChromosome().decode());
+		System.out.println("Solución asociada al cromosoma: " + problema.getSolucion(al.getBestChromosome()));
 	}
 	private static void setConstantes() {
 		// Condiciones de evolucion

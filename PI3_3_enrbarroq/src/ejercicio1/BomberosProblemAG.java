@@ -1,6 +1,5 @@
 package ejercicio1;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -55,8 +54,8 @@ public class BomberosProblemAG implements ValuesInRangeProblemAG<Integer, List<I
 	@Override
 	public List<Integer> getSolucion(ValuesInRangeChromosome<Integer> cr) {
 		List<Integer> dec = cr.decode();
-		List<Integer> result = new ArrayList<>();
-		IntStream.range(0, dec.size()).forEach(i->{if(dec.get(i)==1) result.add(i);});
+		List<Integer> result = IntStream.range(0, dec.size()).boxed()
+				.filter(i->dec.get(i)==1).collect(Collectors.toList());
 		return result;
 	}
 

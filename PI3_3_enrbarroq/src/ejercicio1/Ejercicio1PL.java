@@ -25,6 +25,19 @@ public class Ejercicio1PL {
 		}
 		System.out.println("________");
 		
+		
+//		Resolución utilizando el fichero generado a mano
+		
+//		SolutionPLI a = AlgoritmoPLI.getSolutionFromFile("ficheros/ejemplo1.txt");	
+//		System.out.println("________");
+//		System.out.println("Numero de estaciones (funcion  objetivo): " + a.getGoal());
+//		System.out.println("Barrios con estacion:");
+//		for (int j = 0; j < a.getNumVar(); j++) {
+//			if(a.getSolution()[j]!=0)
+//				System.out.println(a.getName(j)+" = "+a.getSolution()[j]);
+//		}
+//		System.out.println("________");
+		
 	}
 	
 	private static String getConstraints(){
