@@ -115,7 +115,7 @@ public class Ejercicio4 {
 					.map(e->e.getSource()).collect(Collectors.toSet());
 			if(!precedencias.isEmpty()) {
 				List<Monumento> parcial = recorrido.subList(0, i);
-				result = precedencias.stream().anyMatch(p->parcial.contains(p));
+				result = precedencias.stream().allMatch(p->parcial.contains(p));
 			}
 			i--;
 		}
