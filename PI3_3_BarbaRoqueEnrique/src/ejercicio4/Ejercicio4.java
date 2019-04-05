@@ -1,6 +1,5 @@
 package ejercicio4;
 
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,10 +12,6 @@ import org.jgrapht.alg.connectivity.ConnectivityInspector;
 import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
 import org.jgrapht.graph.SimpleDirectedGraph;
 import org.jgrapht.graph.SimpleWeightedGraph;
-import org.jgrapht.io.DOTExporter;
-import org.jgrapht.io.IntegerComponentNameProvider;
-
-import us.lsi.common.Files2;
 import us.lsi.graphs.GraphsReader;
 
 public class Ejercicio4 {
@@ -53,22 +48,6 @@ public class Ejercicio4 {
 		System.out.println("=========================================== APARTADO C ===========================================");
 		apartadoC(grafoConexiones, grafoPrecedencias, recorrido1);
 		apartadoC(grafoConexiones, grafoPrecedencias, recorrido2);
-		
-		DOTExporter<Monumento,Camino> de1 = new DOTExporter<Monumento,Camino>(
-				new IntegerComponentNameProvider<>(),
-				x->x.getNombre(), 
-				x-> "T = " +x.getTiempo());
-		
-		DOTExporter<Monumento,Camino> de2 = new DOTExporter<Monumento,Camino>(
-				new IntegerComponentNameProvider<>(),
-				x->x.getNombre(),
-				null);
-		
-		PrintWriter f = Files2.getWriter("ficheros/grafoConexiones.gv");
-		de1.exportGraph(grafoConexiones, f);
-		
-		PrintWriter f2 = Files2.getWriter("ficheros/grafoPrecedencias.gv");
-		de2.exportGraph(grafoPrecedencias, f2);
 	}
 	
 	
