@@ -2,6 +2,8 @@ package ejercicio1;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import us.lsi.bt.EstadoBT;
 import us.lsi.common.Tuple;
@@ -87,8 +89,10 @@ public class Ejercicio1BT implements EstadoBT<Tuple2<List<Integer>, List<Integer
 	@Override
 	public Tuple2<List<Integer>, List<Integer>> getSolucion() {
 		Tuple2<List<Integer>, List<Integer>> result = null;
+		List<Integer> noSel = new ArrayList<>(sel2);
+		noSel.addAll(IntStream.range(i, lista.size()).mapToObj(i->i).collect(Collectors.toList()));
 		if(sumaRestante==0) {
-			result = Tuple.create(new ArrayList<>(sel1), new ArrayList<>(sel2));
+			result = Tuple.create(new ArrayList<>(sel1), noSel);
 		}
 		return result;
 	}
