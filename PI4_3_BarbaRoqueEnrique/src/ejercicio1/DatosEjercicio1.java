@@ -24,6 +24,10 @@ public class DatosEjercicio1 {
 	}
 
 	public static void setLista(List<Integer> lista) {
+		Integer suma = lista.stream().mapToInt(i->i).sum();
+		if(suma%2!=0) {
+			throw new IllegalArgumentException("La suma de los elementos de la lista debe ser par. Suma actual: " + suma);
+		}
 		DatosEjercicio1.lista = new ArrayList<>(lista);
 	}
 	
