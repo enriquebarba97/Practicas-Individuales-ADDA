@@ -42,7 +42,7 @@ public class Ejercicio4PD implements ProblemaPD<String, Integer, Ejercicio4PD> {
 
 	@Override
 	public Sp<Integer> getSolucionParcialCasoBase() {
-		return Sp.create(null, 0.);
+		return Sp.create(-1, 0.);
 	}
 
 	@Override
@@ -89,14 +89,47 @@ public class Ejercicio4PD implements ProblemaPD<String, Integer, Ejercicio4PD> {
 	private boolean isPalindrome() {
 		boolean result = true;
 		int j2 = j-1;
-		int medio = (i+j2)/2;
-		for(int i2=i; i2<medio; i++) {
+		int i2 = i;
+		while(i2<j2) {
 			result = cadena.charAt(i2) == cadena.charAt(j2);
+			i2++;
+			j2--;
 			if(!result) {
 				break;
 			}
 		}
 		return result;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((i == null) ? 0 : i.hashCode());
+		result = prime * result + ((j == null) ? 0 : j.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Ejercicio4PD other = (Ejercicio4PD) obj;
+		if (i == null) {
+			if (other.i != null)
+				return false;
+		} else if (!i.equals(other.i))
+			return false;
+		if (j == null) {
+			if (other.j != null)
+				return false;
+		} else if (!j.equals(other.j))
+			return false;
+		return true;
 	}
 	
 	
