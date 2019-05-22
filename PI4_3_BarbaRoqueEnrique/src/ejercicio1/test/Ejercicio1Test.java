@@ -44,7 +44,6 @@ public class Ejercicio1Test {
 		AStarGraph<Ejercicio1Vertex,Ejercicio1Edge> graph = AStarSimpleVirtualGraph.of(e->e.getEdgeWeight());
 		var algGV = AStarAlgorithm.of(graph,inicial,goal,null);
 		List<Ejercicio1Edge> camino = algGV.getPath().getEdgeList();
-		System.out.println(camino);
 		System.out.println(Ejercicio1Vertex.getSolucion(camino));
 		
 	}

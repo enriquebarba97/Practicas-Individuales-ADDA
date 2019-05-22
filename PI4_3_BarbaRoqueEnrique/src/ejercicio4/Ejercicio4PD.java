@@ -15,8 +15,8 @@ public class Ejercicio4PD implements ProblemaPD<String, Integer, Ejercicio4PD> {
 	private Integer i, j;
 	
 	public static Ejercicio4PD create(String string) {
-		cadena = string;
-		len = string.length();
+		cadena = string.replaceAll("\\s", "");
+		len = cadena.length();
 		return new Ejercicio4PD(0, len);
 	}
 	
@@ -91,7 +91,7 @@ public class Ejercicio4PD implements ProblemaPD<String, Integer, Ejercicio4PD> {
 		int j2 = j-1;
 		int i2 = i;
 		while(i2<j2) {
-			result = cadena.charAt(i2) == cadena.charAt(j2);
+			result = Character.toLowerCase(cadena.charAt(i2)) == Character.toLowerCase(cadena.charAt(j2));
 			i2++;
 			j2--;
 			if(!result) {
