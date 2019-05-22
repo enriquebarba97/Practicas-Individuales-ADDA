@@ -1,5 +1,5 @@
 package ejercicio1;
 
 public enum Elegir {
-SI,NO
+CONJUNTO1,CONJUNTO2
 }

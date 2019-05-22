@@ -2,9 +2,6 @@ package ejercicio1;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
 import us.lsi.bt.EstadoBT;
 import us.lsi.common.Tuple;
 import us.lsi.common.Tuple2;
@@ -17,14 +14,16 @@ public class Ejercicio1BT implements EstadoBT<Tuple2<List<Integer>, List<Integer
 	
 	private List<Integer> lista, sel1, sel2;
 	private Integer i;
-	private Integer sumaRestante;
+	private Integer sumaRestante1, sumaRestante2;
 	
 	Ejercicio1BT() {
 		this.lista = DatosEjercicio1.getLista();
 		this.sel1 = new ArrayList<>();
 		this.sel2 = new ArrayList<>();
 		this.i=0;
-		this.sumaRestante = lista.stream().mapToInt(i->i).sum()/2;
+		Integer objetivo = lista.stream().mapToInt(i->i).sum()/2;
+		this.sumaRestante1 = objetivo;
+		this.sumaRestante2 = objetivo;
 	}
 	
 	
@@ -40,12 +39,13 @@ public class Ejercicio1BT implements EstadoBT<Tuple2<List<Integer>, List<Integer
 
 	@Override
 	public Ejercicio1BT avanza(Elegir a) {
-		if(a.equals(Elegir.SI)) {
+		if(a.equals(Elegir.CONJUNTO1)) {
 			sel1.add(lista.get(i));
-			sumaRestante -= lista.get(i);
+			sumaRestante1 -= lista.get(i);
 			i++;
-		}else if(a.equals(Elegir.NO)) {
+		}else if(a.equals(Elegir.CONJUNTO2)) {
 			sel2.add(lista.get(i));
+			sumaRestante2 -= lista.get(i);
 			i++;
 		}
 		return this;
@@ -53,15 +53,14 @@ public class Ejercicio1BT implements EstadoBT<Tuple2<List<Integer>, List<Integer
 
 	@Override
 	public Ejercicio1BT retrocede(Elegir a) {
-		if(a.equals(Elegir.SI)) {
+		if(a.equals(Elegir.CONJUNTO1)) {
 			i--;
+			sumaRestante1 += lista.get(i);
 			sel1.remove(lista.get(i));
-			sumaRestante += lista.get(i);
-			
-		}else if(a.equals(Elegir.NO)) {
+		}else if(a.equals(Elegir.CONJUNTO2)) {
 			i--;
+			sumaRestante2 += lista.get(i);
 			sel2.remove(lista.get(i));
-			
 		}
 		return this;
 	}
@@ -73,26 +72,24 @@ public class Ejercicio1BT implements EstadoBT<Tuple2<List<Integer>, List<Integer
 
 	@Override
 	public boolean esCasoBase() {
-		return lista.size()==i || sumaRestante==0;
+		return lista.size()==i;
 	}
 
 	@Override
 	public List<Elegir> getAlternativas() {
 		List<Elegir> result = new ArrayList<>();
-		result.add(Elegir.NO);
-		if(sumaRestante-lista.get(i)>=0) {
-			result.add(Elegir.SI);
-		}
+		if(sumaRestante1-lista.get(i)>=0)
+			result.add(Elegir.CONJUNTO1);
+		if(sumaRestante2-lista.get(i)>=0)
+			result.add(Elegir.CONJUNTO2);
 		return result;
 	}
 
 	@Override
 	public Tuple2<List<Integer>, List<Integer>> getSolucion() {
 		Tuple2<List<Integer>, List<Integer>> result = null;
-		List<Integer> noSel = new ArrayList<>(sel2);
-		noSel.addAll(IntStream.range(i, lista.size()).mapToObj(i->i).collect(Collectors.toList()));
-		if(sumaRestante==0) {
-			result = Tuple.create(new ArrayList<>(sel1), noSel);
+		if(sumaRestante1==0 && sumaRestante2==0) {
+			result = Tuple.create(new ArrayList<>(sel1), new ArrayList<>(sel2));
 		}
 		return result;
 	}
@@ -102,6 +99,7 @@ public class Ejercicio1BT implements EstadoBT<Tuple2<List<Integer>, List<Integer
 		return (double) sel1.size();
 	}
 
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -110,6 +108,8 @@ public class Ejercicio1BT implements EstadoBT<Tuple2<List<Integer>, List<Integer
 		result = prime * result + ((lista == null) ? 0 : lista.hashCode());
 		result = prime * result + ((sel1 == null) ? 0 : sel1.hashCode());
 		result = prime * result + ((sel2 == null) ? 0 : sel2.hashCode());
+		result = prime * result + ((sumaRestante1 == null) ? 0 : sumaRestante1.hashCode());
+		result = prime * result + ((sumaRestante2 == null) ? 0 : sumaRestante2.hashCode());
 		return result;
 	}
 
@@ -143,8 +143,19 @@ public class Ejercicio1BT implements EstadoBT<Tuple2<List<Integer>, List<Integer
 				return false;
 		} else if (!sel2.equals(other.sel2))
 			return false;
+		if (sumaRestante1 == null) {
+			if (other.sumaRestante1 != null)
+				return false;
+		} else if (!sumaRestante1.equals(other.sumaRestante1))
+			return false;
+		if (sumaRestante2 == null) {
+			if (other.sumaRestante2 != null)
+				return false;
+		} else if (!sumaRestante2.equals(other.sumaRestante2))
+			return false;
 		return true;
 	}
-	
+
+
 	
 }
