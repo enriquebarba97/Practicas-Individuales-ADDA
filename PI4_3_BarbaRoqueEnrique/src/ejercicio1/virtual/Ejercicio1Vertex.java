@@ -53,11 +53,10 @@ public class Ejercicio1Vertex extends ActionVirtualVertex<Ejercicio1Vertex, Ejer
 	@Override
 	protected Ejercicio1Vertex neighbor(Elegir a) {
 		Ejercicio1Vertex result = null;
-		if(a.equals(Elegir.CONJUNTO1)) {
+		if(a.equals(Elegir.CONJUNTO1))
 			result = of(i+1, sumaRestante1-DatosEjercicio1.getNumero(i), sumaRestante2);
-		}else if(a.equals(Elegir.CONJUNTO2)) {
+		else if(a.equals(Elegir.CONJUNTO2))
 			result = of(i+1, sumaRestante1, sumaRestante2-DatosEjercicio1.getNumero(i));
-		}
 		return result;
 	}
 

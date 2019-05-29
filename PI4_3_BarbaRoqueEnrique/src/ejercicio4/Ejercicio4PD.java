@@ -48,11 +48,10 @@ public class Ejercicio4PD implements ProblemaPD<String, Integer, Ejercicio4PD> {
 	@Override
 	public Ejercicio4PD getSubProblema(Integer a, int np) {
 		Ejercicio4PD result = null;
-		if(np==0) {
+		if(np==0)
 			result = new Ejercicio4PD(i, a);
-		}else {
+		else
 			result = new Ejercicio4PD(a, j);
-		}
 		return result;
 	}
 
@@ -91,12 +90,12 @@ public class Ejercicio4PD implements ProblemaPD<String, Integer, Ejercicio4PD> {
 		int j2 = j-1;
 		int i2 = i;
 		while(i2<j2) {
-			result = Character.toLowerCase(cadena.charAt(i2)) == Character.toLowerCase(cadena.charAt(j2));
+			result = Character.toLowerCase(cadena.charAt(i2)) ==
+					Character.toLowerCase(cadena.charAt(j2));
 			i2++;
 			j2--;
-			if(!result) {
+			if(!result)
 				break;
-			}
 		}
 		return result;
 	}

@@ -53,31 +53,28 @@ public class Ejercicio1PD implements ProblemaPDR<Tuple2<List<Integer>,List<Integ
 	@Override
 	public Sp<Elegir> getSolucionParcialCasoBase() {
 		Sp<Elegir> result = null;
-		if(sumaRestante1 == 0 && sumaRestante2 == 0) {
+		if(sumaRestante1 == 0 && sumaRestante2 == 0)
 			result = Sp.create(null, 0.);
-		}
 		return result;
 	}
 
 	@Override
 	public Ejercicio1PD getSubProblema(Elegir a) {
 		Ejercicio1PD result = null;
-		if(a.equals(Elegir.CONJUNTO1)) {
+		if(a.equals(Elegir.CONJUNTO1)) 
 			result = new Ejercicio1PD(i+1, sumaRestante1-numeros.get(i), sumaRestante2); 
-		}else if(a.equals(Elegir.CONJUNTO2)) {
+		else if(a.equals(Elegir.CONJUNTO2))
 			result = new Ejercicio1PD(i+1, sumaRestante1, sumaRestante2-numeros.get(i));
-		}
 		return result;
 	}
 
 	@Override
 	public Sp<Elegir> getSolucionParcialPorAlternativa(Elegir a, Sp<Elegir> s) {
 		Sp<Elegir> result = null;
-		if(a.equals(Elegir.CONJUNTO1)) {
+		if(a.equals(Elegir.CONJUNTO1))
 			result = Sp.create(a, s.propiedad+1);
-		}else if(a.equals(Elegir.CONJUNTO2)) {
+		else if(a.equals(Elegir.CONJUNTO2))
 			result = Sp.create(a, s.propiedad);
-		}
 		return result;
 	}
 
@@ -101,11 +98,10 @@ public class Ejercicio1PD implements ProblemaPDR<Tuple2<List<Integer>,List<Integ
 	@Override
 	public Tuple2<List<Integer>, List<Integer>> getSolucionReconstruidaCasoRecursivo(Sp<Elegir> sp,
 			Tuple2<List<Integer>, List<Integer>> s) {
-		if(sp.alternativa.equals(Elegir.CONJUNTO1)) {
+		if(sp.alternativa.equals(Elegir.CONJUNTO1))
 			s.getV1().add(numeros.get(i));
-		}else if(sp.alternativa.equals(Elegir.CONJUNTO2)) {
+		else if(sp.alternativa.equals(Elegir.CONJUNTO2))
 			s.getV2().add(numeros.get(i));
-		}
 		return s;
 	}
 
